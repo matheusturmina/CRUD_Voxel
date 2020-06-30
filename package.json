@@ -1,0 +1,23 @@
+{
+  "name": "crud-voxel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.3",
+    "body-parser": "^1.19.0",
+    "conventional-changelog": "^3.1.21",
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.4",
+    "handlebars-helpers": "^0.10.0",
+    "moment": "^2.27.0",
+    "mongoose": "^5.9.20",
+    "mongoose-plugin-date-format": "^1.1.2",
+    "nodemon": "^2.0.4"
+  }
+}

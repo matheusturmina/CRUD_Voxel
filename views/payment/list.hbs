@@ -1,0 +1,45 @@
+<h3><a class="btn btn-secondary" href="/payment"><i class="fa fa-plus"></i> Create New</a> Payment List</h3>
+<table class="table table-striped">
+    <thead>
+        <style>
+
+            .textarea1{
+                height: 5%;
+                resize: none;
+                padding-left: 15px;
+                width: 100%;
+                border: none; 
+            }
+            .textarea2{
+                width: 100%;
+                border: none;
+                resize: none;
+            }
+        </style>
+        <tr>
+            <th>Payment Posting ID</th>
+            <th>Title</th>
+            <th>Value</th>
+            <th>Date</th>
+            <th>External Tax</th>
+            <th>Comments</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+            <td>{{this._id}}</td>
+            <td><textarea class = "textarea2">{{this.title}}</textarea></td>
+            <td>{{this.value}}</td>
+            <td>{{this.date}}</td>
+            <td>{{this.externalTax}}</td>
+            <td><textarea class = "textarea1" >{{this.comments}}</textarea></td>
+            <td>
+                <a href="/payment/{{this._id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                <a href="/payment/delete/{{this._id}}" onclick=""><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
