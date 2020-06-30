@@ -2,6 +2,7 @@ const express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose');
 const Payment = mongoose.model('Payment');
+const xlsxFile = require('read-excel-file/node');
 
 router.get('/', (req, res) => {
     res.render("payment/addOrEdit", {
@@ -71,6 +72,19 @@ router.get('/list', (req, res) => {
     });
 });
 
+router.get('/upload', (req, res) => {
+    Payment.find((err, docs) => {
+        if (!err) {
+            res.render("payment/upload", {
+                list: docs
+            });
+        }
+        else {
+            console.log('Error in retrieving employee list :' + err);
+        }
+    });
+});
+
 
 function handleValidationError(err, body) {
     for (field in err.errors) {
@@ -89,6 +103,7 @@ function handleValidationError(err, body) {
         }
     }
 }
+
 
 router.get('/:id', (req, res) => {
     Payment.findById(req.params.id, (err, doc) => {
