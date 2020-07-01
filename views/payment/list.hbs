@@ -1,4 +1,5 @@
-<h3><a class="btn btn-secondary" href="/payment"><i class="fa fa-plus"></i> Create New</a> Payment List</h3>
+
+
 <table class="table table-striped">
     <thead>
         <style>
@@ -15,7 +16,22 @@
                 border: none;
                 resize: none;
             }
+            .header{
+                display: flex;
+            }
+            h3{
+                font-size: 50px;
+            }
+            a{
+                margin: 2px;
+            }
         </style>
+            <div class= "header">
+            <a class="btn btn-secondary" href="/payment"><i class="fa fa-plus"></i> Create New</a>
+            <a class="btn btn-secondary" href="/payment/upload"><i class="fa fa-list-alt"></i> Upload File</a> 
+            </div>
+            
+            <h3>Payment List</h3>
         <tr>
             <th>Payment Posting ID</th>
             <th>Title</th>
@@ -26,6 +42,7 @@
             <th></th>
         </tr>
     </thead>
+
     <tbody>
         {{#each list}}
         <tr>

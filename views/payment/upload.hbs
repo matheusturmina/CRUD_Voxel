@@ -13,10 +13,14 @@
         margin-bottom: 200px;
     }
 
-    .navigation{
+    .form-group{
         display: flex;
         justify-content: center;
         margin-top: 100px;
+    }
+    
+    a{
+        margin: 2px;
     }
     h1{
         margin-bottom: 60px;
@@ -28,8 +32,9 @@
     <form action='/file/upload' method='post' encType="multipart/form-data">
         <input type="file"  name="file" />
         <button type="submit" class="btn btn-info"><i class="fa fa-database"></i> Upload</button>
-        <div class = "navigation">
+        <div class = "form-group">
         <a class="btn btn-secondary" href="/payment"><i class="fa fa-plus"></i> Create New</a>
+        <a class="btn btn-secondary" href="/payment/list"><i class="fa fa-list-alt"></i> View All</a>
         </div>
     </form>	
     </div>
