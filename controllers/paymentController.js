@@ -4,18 +4,6 @@ const mongoose = require('mongoose');
 const Payment = mongoose.model('Payment');
 const xlsxFile = require('read-excel-file/node');
 
-router.get('/', (req, res) => {
-    res.render("payment/addOrEdit", {
-        viewTitle: "Insert Payment"
-    });
-});
-
-router.post('/', (req, res) => {
-    if (req.body._id == '')
-        insertRecord(req, res);
-        else
-        updateRecord(req, res);
-});
 
 function insertRecord(req, res) {
     var payment = new Payment();
@@ -41,8 +29,6 @@ function insertRecord(req, res) {
     });
 }
 
-
-
 function updateRecord(req, res) {
     Payment.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
         if (!err) { res.redirect('payment/list'); }
@@ -51,7 +37,7 @@ function updateRecord(req, res) {
                 handleValidationError(err, req.body);
                 res.render("payment/addOrEdit", {
                     viewTitle: 'Update Payment',
-                    employee: req.body
+                    payment: req.body
                 });
             }
             else
@@ -60,6 +46,40 @@ function updateRecord(req, res) {
     });
 }
 
+function handleValidationError(err, body) {
+    for (field in err.errors) {
+        switch (err.errors[field].path) {
+            case 'title':
+                body['titleError'] = err.errors[field].message;
+                break;
+            case 'date':
+                body['dateError'] = err.errors[field].message;
+                break;
+            case 'value':
+                body['valueError'] = err.errors[field].message;
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+
+router.post('/', (req, res) => {
+    if (req.body._id == '')
+        insertRecord(req, res);
+        else
+        
+        updateRecord(req, res);
+});
+
+
+
+router.get('/', (req, res) => {
+    res.render("payment/addOrEdit", {
+        viewTitle: "Insert Payment"
+    });
+});
 
 router.get('/list', (req, res) => {
     Payment.find((err, docs) => {
@@ -100,26 +120,6 @@ router.get('/uploadSucesso', (req, res) => {
     });
 });
 
-
-function handleValidationError(err, body) {
-    for (field in err.errors) {
-        switch (err.errors[field].path) {
-            case 'title':
-                body['titleError'] = err.errors[field].message;
-                break;
-            case 'date':
-                body['dateError'] = err.errors[field].message;
-                break;
-            case 'value':
-                body['valueError'] = err.errors[field].message;
-                break;
-            default:
-                break;
-        }
-    }
-}
-
-
 router.get('/:id', (req, res) => {
     Payment.findById(req.params.id, (err, doc) => {
         if (!err) {
@@ -140,5 +140,4 @@ router.get('/delete/:id', (req, res) => {
     });
 });
 
-    
 module.exports = router;
