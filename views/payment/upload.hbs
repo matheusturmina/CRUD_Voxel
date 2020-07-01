@@ -1,5 +1,6 @@
 <h3>{{viewTitle}}</h3>
 
+{{!-- um pouco de css  --}}
 <style>
     body{
         padding-left: 200px;
@@ -18,7 +19,7 @@
         justify-content: center;
         margin-top: 100px;
     }
-    
+
     a{
         margin: 2px;
     }
@@ -30,9 +31,13 @@
     <div class="conteudo">
     <h1>Faça upload de sua planilha</h1>
     <form action='/file/upload' method='post' encType="multipart/form-data">
+        {{!-- campo para inserir tabela --}}
         <input type="file"  name="file" />
+        {{!-- botao de upload  --}}
         <button type="submit" class="btn btn-info"><i class="fa fa-database"></i> Upload</button>
         <div class = "form-group">
+
+            {{!-- botoes de redirecionamento --}}
         <a class="btn btn-secondary" href="/payment"><i class="fa fa-plus"></i> Create New</a>
         <a class="btn btn-secondary" href="/payment/list"><i class="fa fa-list-alt"></i> View All</a>
         </div>

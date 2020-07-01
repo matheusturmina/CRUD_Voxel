@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Payment = mongoose.model('Payment');
 const xlsxFile = require('read-excel-file/node');
 
-
+//funcao usada para inserir novos dados no banco de dados
 function insertRecord(req, res) {
     var payment = new Payment();
     payment.title = req.body.title;
@@ -29,6 +29,7 @@ function insertRecord(req, res) {
     });
 }
 
+//funcao usada para editar os dados do banco de dados
 function updateRecord(req, res) {
     Payment.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
         if (!err) { res.redirect('payment/list'); }
@@ -46,6 +47,7 @@ function updateRecord(req, res) {
     });
 }
 
+//funcao para validar os possiveis erros nas restricoes de campo
 function handleValidationError(err, body) {
     for (field in err.errors) {
         switch (err.errors[field].path) {
@@ -65,6 +67,7 @@ function handleValidationError(err, body) {
 }
 
 
+//rota para o metodo "post". Caso ele não tenha um id, chamará a funcao de inserir um novo dado. Caso contrario, chamará a funcao de editar os dados.
 router.post('/', (req, res) => {
     if (req.body._id == '')
         insertRecord(req, res);
@@ -74,13 +77,14 @@ router.post('/', (req, res) => {
 });
 
 
-
+//rota para a página de cadastro de pagamentos
 router.get('/', (req, res) => {
     res.render("payment/addOrEdit", {
         viewTitle: "Insert Payment"
     });
 });
 
+//rota para a página de visualização dos pagamentos
 router.get('/list', (req, res) => {
     Payment.find((err, docs) => {
         if (!err) {
@@ -94,6 +98,7 @@ router.get('/list', (req, res) => {
     });
 });
 
+//rota para a página de upload de arquivos
 router.get('/upload', (req, res) => {
     Payment.find((err, docs) => {
         if (!err) {
@@ -102,11 +107,12 @@ router.get('/upload', (req, res) => {
             });
         }
         else {
-            console.log('Error in retrieving payment list :' + err);
+            console.log('Error in retrieving upload page :' + err);
         }
     });
 });
 
+//rota para a página que confirma o upload
 router.get('/uploadSucesso', (req, res) => {
     Payment.find((err, docs) => {
         if (!err) {
@@ -115,11 +121,12 @@ router.get('/uploadSucesso', (req, res) => {
             });
         }
         else {
-            console.log('Error in retrieving payment list :' + err);
+            console.log('Error in retrieving upload :' + err);
         }
     });
 });
 
+//rota para a página de edicao de pagamentos
 router.get('/:id', (req, res) => {
     Payment.findById(req.params.id, (err, doc) => {
         if (!err) {
@@ -131,6 +138,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
+//rota para a "Pagina" de remocao de pagamentos
 router.get('/delete/:id', (req, res) => {
     Payment.findByIdAndRemove(req.params.id, (err, doc) => {
         if (!err) {

@@ -2,6 +2,7 @@
 
 <table class="table table-striped">
     <thead>
+        {{!-- Um pouco de css --}}
         <style>
             .textarea1{
                 height: 5%;
@@ -25,6 +26,7 @@
                 margin: 2px;
             }
         </style>
+            {{!-- botoes de redirecionamento --}}
             <div class= "header">
             <a class="btn btn-secondary" href="/payment"><i class="fa fa-plus"></i> Create New</a>
             <a class="btn btn-secondary" href="/payment/upload"><i class="fa fa-list-alt"></i> Upload File</a> 
@@ -32,6 +34,7 @@
             
             <h3>Payment List</h3>
         <tr>
+            {{!-- cabecalho da tabela --}}
             <th>Payment Posting ID</th>
             <th>Title</th>
             <th>Value</th>
@@ -45,6 +48,7 @@
     <tbody>
         {{#each list}}
         <tr>
+            {{!-- dados da tabela --}}
             <td>{{this._id}}</td>
             <td><textarea class = "textarea2">{{this.title}}</textarea></td>
             <td>{{this.value}}</td>
@@ -52,6 +56,7 @@
             <td>{{this.externalTax}}</td>
             <td><textarea class = "textarea1" >{{this.comments}}</textarea></td>
             <td>
+                {{!-- botoes para edicao e deletar dados --}}
                 <a href="/payment/{{this._id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
                 <a href="/payment/delete/{{this._id}}" onclick=""><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
             </td>
