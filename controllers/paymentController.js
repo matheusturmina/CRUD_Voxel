@@ -3,6 +3,7 @@ var router = express.Router();
 const mongoose = require('mongoose');
 const Payment = mongoose.model('Payment');
 const xlsxFile = require('read-excel-file/node');
+mongoose.set('useFindAndModify', false);
 
 //funcao usada para inserir novos dados no banco de dados
 function insertRecord(req, res) {

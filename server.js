@@ -53,6 +53,7 @@ app.engine('hbs', exphbs({
 app.set('view engine', 'hbs');
 
 
+//provavelmente seria mais adequado para essa parte estar no "paymentController.js", mas devido a alguns problemas com o package Multer não foi possivel.
 //aqui foi feito uma implementacao do package "read-excel-file" e o "Multer". 
 //a idea é a seguinte: toda vez que o Multer fizer o upload de um arquivo, ele vai chamar o package read-excel-file para ler esse arquivo
 app.post('/file/upload', upload.single('file'), 
