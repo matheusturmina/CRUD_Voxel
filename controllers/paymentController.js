@@ -87,6 +87,19 @@ router.get('/upload', (req, res) => {
     });
 });
 
+router.get('/uploadSucesso', (req, res) => {
+    Payment.find((err, docs) => {
+        if (!err) {
+            res.render("payment/uploadSucesso", {
+                list: docs
+            });
+        }
+        else {
+            console.log('Error in retrieving payment list :' + err);
+        }
+    });
+});
+
 
 function handleValidationError(err, body) {
     for (field in err.errors) {
@@ -126,40 +139,6 @@ router.get('/delete/:id', (req, res) => {
         else { console.log('Error in payment delete :' + err); }
     });
 });
-
-    xlsxFile('./Data.xlsx').then((rows) => {
-
-        for (i in rows){
-               for (j in rows[i]){
-
-                   if (i != 0 && j == 0){
-                       var titleExcel = rows[i][j];
-                    // console.log('title')
-                   } else if (i != 0 && j == 1){
-                    var dateExcel = rows[i][j];
-                    // console.log('date')
-                   } else if (i != 0 && j == 2){
-                    var valueExcel = rows[i][j];
-                    // console.log('value')
-                   } else if (i != 0 && j == 3){
-                    var commentsExcel = rows[i][j];
-                    // console.log('comments')
-                    var externalTaxExcel = Number(valueExcel*0.05);
-                   }
-                   
-        }
-        if (i != 0){
-        Payment.insertMany([ 
-            {title: titleExcel, value: valueExcel, date: dateExcel, externalTax: externalTaxExcel, comments: commentsExcel}, 
-        ]).then(function(){ 
-            console.log("Data inserted")  // Success 
-        }).catch(function(error){ 
-            console.log(error)      // Failure 
-        }); }
-        
-           }
-        //    console.log(i, j)
-        })
 
     
 module.exports = router;
