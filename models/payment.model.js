@@ -24,7 +24,7 @@ var paymentSchema = new mongoose.Schema({
 });
 
 
-//regex para validar o campo 'title'
+// regex para validar o campo 'title'
 paymentSchema.path('title').validate((val) => {
     titleRegex = /^[a-zA-Z0-9_ ]{5,100}$/;
     return titleRegex.test(val);
