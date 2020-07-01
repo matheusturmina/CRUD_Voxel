@@ -72,9 +72,10 @@ function handleValidationError(err, body) {
 router.post('/', (req, res) => {
     if (req.body._id == '')
         insertRecord(req, res);
-        else
-        
-        updateRecord(req, res);
+        else{
+        //Aqui não podemos esquecer de atualizar a 'External Tax' caso o valor do 'Value' tenha mudado
+        req.body.externalTax = req.body.value*0.05
+        updateRecord(req, res);}
 });
 
 
