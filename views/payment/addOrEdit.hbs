@@ -27,7 +27,7 @@
 
         <div class="form-group col-md-6">
             <label>Date</label>
-            <input type="number" class="form-control" name="date" pattern="([12]\d{3}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01]))" title = "Date must be on the pattern Y-m-d (year-month-day)." placeholder="Date" value="{{payment.date}}">
+            <input type="double" class="form-control" name="date" pattern="([12]\d{3}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01]))$" title = "Date must be on the pattern Y-m-d (year-month-day)." placeholder="Date" value="{{payment.date}}">
                     <div class="text-danger">
                         {{!-- mensagem de erro (caso haja) --}}
             {{payment.dateError}}</div>
