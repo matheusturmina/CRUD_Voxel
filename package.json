@@ -15,7 +15,7 @@
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",
     "handlebars-helpers": "^0.10.0",
-    "moment": "^2.27.0",
+    "moment": "^2.29.2",
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.20",
     "mongoose-plugin-date-format": "^1.1.2",
